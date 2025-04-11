@@ -14,8 +14,11 @@
 
 class Screen {
 public:
-    explicit Screen(uint8_t width, uint8_t height, int sda_pin, int sck_pin, int8_t resetPin = -1);
+    explicit Screen(uint8_t width, uint8_t height, int sda_pin, int sck_pin, int8_t reset_pin = -1);
     bool begin();
+    void clear();
+    void writeText(const char* text, int x, int y, int size = 1);
+    void drawBitmap(const uint8_t* bitmap, int x, int y, int width, int height);
 
 private:
     Adafruit_SSD1306 mDisplay;

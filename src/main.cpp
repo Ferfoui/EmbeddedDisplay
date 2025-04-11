@@ -14,6 +14,28 @@
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 32
 
+#define CHAR_HEIGHT 16
+#define CHAR_WIDTH 16
+static const unsigned char PROGMEM character_bmp[] =
+{
+    0b00000000, 0b00000000,
+    0b00000001, 0b10000000,
+    0b00000001, 0b10000000,
+    0b00000001, 0b10000000,
+    0b00011111, 0b11111000,
+    0b00111111, 0b11111100,
+    0b00110001, 0b10001100,
+    0b00110001, 0b10001100,
+    0b00110001, 0b10001100,
+    0b00111111, 0b11111100,
+    0b00011111, 0b11111000,
+    0b00000001, 0b10000000,
+    0b00000001, 0b10000000,
+    0b00000001, 0b10000000,
+    0b00000001, 0b10000000,
+    0b00000000, 0b00000000
+};
+
 
 RgbLed rgbLed(RGB_LED_PIN);
 Screen i2cScreen(SCREEN_WIDTH, SCREEN_HEIGHT, I2C_SDA_PIN, I2C_SCL_PIN, OLED_RESET);
@@ -25,13 +47,16 @@ void setup()
     if (!i2cScreen.begin())
     {
         rgbLed.setColor(32, 0, 0); // Red color
-    }
-    else
-    {
-        rgbLed.setColor(0, 32, 0); // Green color
+        delay(500);
+        return;
     }
 
-    delay(3000);
+    rgbLed.setColor(0, 32, 0); // Green color
+
+    delay(2000);
+
+    i2cScreen.clear();
+    i2cScreen.drawBitmap(character_bmp,(SCREEN_WIDTH - CHAR_WIDTH) / 2, (SCREEN_HEIGHT - CHAR_HEIGHT) / 2, CHAR_WIDTH, CHAR_HEIGHT);
 }
 
 void loop()

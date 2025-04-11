@@ -19,6 +19,7 @@ public:
     void clear();
     void writeText(const char* text, int x, int y, int size = 1);
     void drawBitmap(const uint8_t* bitmap, int x, int y, int width, int height);
+    void scrollRight();
 
 private:
     Adafruit_SSD1306 mDisplay;

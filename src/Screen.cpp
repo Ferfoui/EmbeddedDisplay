@@ -34,3 +34,7 @@ void Screen::drawBitmap(const uint8_t* bitmap, int x, int y, int width, int heig
     mDisplay.drawBitmap(x, y, bitmap, width, height, SSD1306_WHITE);
     mDisplay.display();
 }
+
+void Screen::scrollRight() {
+    mDisplay.startscrollright(0x00, 0x0F);
+}

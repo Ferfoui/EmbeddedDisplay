@@ -2,8 +2,8 @@
 // Created by Ferfoui on 11/04/2025.
 //
 
-#ifndef RGBLED_HPP
-#define RGBLED_HPP
+#ifndef RGB_LED_HPP
+#define RGB_LED_HPP
 
 #include <Arduino.h>
 
@@ -20,4 +20,4 @@ private:
 
 
 
-#endif //RGBLED_HPP
+#endif //RGB_LED_HPP

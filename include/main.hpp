@@ -2,8 +2,8 @@
 // Created by Ferfoui on 11/04/2025.
 //
 
-#ifndef EMBEDDEDDISPLAY_MAIN_HPP
-#define EMBEDDEDDISPLAY_MAIN_HPP
+#ifndef EMBEDDED_DISPLAY_MAIN_HPP
+#define EMBEDDED_DISPLAY_MAIN_HPP
 
 #define RGB_LED_PIN 38
 
@@ -34,4 +34,4 @@ static const unsigned char PROGMEM wen_bmp[] =
                 0x04, 0x60, 0x18, 0x1E, 0xE0, 0x08, 0x00, 0x00
         };
 
-#endif //EMBEDDEDDISPLAY_MAIN_HPP
+#endif //EMBEDDED_DISPLAY_MAIN_HPP

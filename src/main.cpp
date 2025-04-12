@@ -6,26 +6,40 @@
 
 #include <BluetoothTerminal.h>
 
-BluetoothTerminal bluetoothTerminal;
-unsigned long lastMillis = 0;
 
 RgbLed rgbLed(RGB_LED_PIN);
 Screen i2cScreen(SCREEN_WIDTH, SCREEN_HEIGHT, I2C_SDA_PIN, I2C_SCL_PIN, OLED_RESET);
 
+BluetoothTerminal bluetoothTerminal;
+
+
 void handleConnect(BLEDevice device)
 {
     Serial.println("Device connected");
+    rgbLed.setColor(0, 0, 32); // Blue color
 }
 
 void handleDisconnect(BLEDevice device)
 {
     Serial.println("Device disconnected");
+    rgbLed.setColor(32, 0, 0); // Red color
 }
 
 void handleReceive(const char *message)
 {
     Serial.print("Message received: ");
     Serial.println(message);
+    i2cScreen.clear();
+    i2cScreen.writeText(message, 0, 0, 1);
+}
+
+void initBluetooth()
+{
+    bluetoothTerminal.setName("ESP32");
+    bluetoothTerminal.onConnect(handleConnect);
+    bluetoothTerminal.onDisconnect(handleDisconnect);
+    bluetoothTerminal.onReceive(handleReceive);
+    bluetoothTerminal.start();
 }
 
 void setup()
@@ -51,21 +65,18 @@ void setup()
     Serial.begin(9600);
     while (!Serial) {}
 
-    bluetoothTerminal.setName("ESP32");
-    bluetoothTerminal.onConnect(handleConnect);
-    bluetoothTerminal.onDisconnect(handleDisconnect);
-    bluetoothTerminal.onReceive(handleReceive);
-    bluetoothTerminal.start();
+    initBluetooth();
 }
+
+unsigned long lastTimeMs = 0;
 
 void loop()
 {
+    const unsigned long currentTimeMs = millis();
 
-    const unsigned long currentMillis = millis();
-
-    if (currentMillis > lastMillis + 5000)
+    if (currentTimeMs > lastTimeMs + 5000)
     {
-        lastMillis = currentMillis;
+        lastTimeMs = currentTimeMs;
 
         if (bluetoothTerminal.isConnected())
         {
@@ -74,7 +85,6 @@ void loop()
     }
 
     bluetoothTerminal.loop();
-
 }
 
 

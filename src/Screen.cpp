@@ -4,7 +4,7 @@
 
 #include "Screen.hpp"
 
-Screen::Screen(uint8_t width, uint8_t height, int sda_pin, int sck_pin, int8_t reset_pin) {
+Screen::Screen(const uint8_t width, const uint8_t height, const int sda_pin, const int sck_pin, const int8_t reset_pin) {
     mI2c.begin(sda_pin, sck_pin);
     mDisplay = Adafruit_SSD1306(width, height, &mI2c, reset_pin);
 }
@@ -22,7 +22,7 @@ void Screen::clear() {
     mDisplay.clearDisplay();
 }
 
-void Screen::writeText(const char* text, int x, int y, int size) {
+void Screen::writeText(const char* text, const short x, const short y, const uint8_t size) {
     mDisplay.setTextSize(size);
     mDisplay.setTextColor(SSD1306_WHITE);
     mDisplay.setCursor(x, y);
@@ -30,7 +30,7 @@ void Screen::writeText(const char* text, int x, int y, int size) {
     mDisplay.display();
 }
 
-void Screen::drawBitmap(const uint8_t* bitmap, int x, int y, int width, int height) {
+void Screen::drawBitmap(const uint8_t* bitmap, const short x, const short y, const short width, const short height) {
     mDisplay.drawBitmap(x, y, bitmap, width, height, SSD1306_WHITE);
     mDisplay.display();
 }

@@ -9,10 +9,10 @@
 
 class RgbLed {
 public:
-    explicit RgbLed(int pin);
-    void setColor(uint8_t red_value, uint8_t green_value, uint8_t blue_value);
-    void setColor(uint32_t color);
-    void turnOff();
+    explicit RgbLed(uint8_t pin);
+    void setColor(uint8_t red_value, uint8_t green_value, uint8_t blue_value) const;
+    void setColor(uint32_t color) const;
+    void turnOff() const;
 
 private:
     int mPin;

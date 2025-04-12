@@ -30,7 +30,7 @@ void setup()
     i2cScreen.scrollRight();
 
     Serial.begin(9600);
-    while (!Serial);
+    while (!Serial) {}
 
     // Initialize BLE
     if (!BLE.begin()) {
@@ -103,7 +103,7 @@ void exploreCharacteristic(BLECharacteristic characteristic) {
     }
 }
 
-void exploreService(BLEService service) {
+void exploreService(const BLEService& service) {
     // print the UUID of the service
     Serial.print("Service ");
     Serial.println(service.uuid());
@@ -163,7 +163,7 @@ void explorerPeripheral(BLEDevice peripheral) {
 void loop()
 {
     // check if a peripheral has been discovered
-    BLEDevice peripheral = BLE.available();
+    const BLEDevice peripheral = BLE.available();
 
     if (peripheral) {
         // discovered a peripheral, print out address, local name, and advertised service
@@ -176,13 +176,13 @@ void loop()
         Serial.println();
 
         // see if peripheral is a LED
-        if (peripheral.localName() == "LED") {
+        if (peripheral.localName() == "") {
             // stop scanning
             BLE.stopScan();
 
             explorerPeripheral(peripheral);
 
-            // peripheral disconnected, we are done
+            // the peripheral disconnected, we are done
             while (1) {
                 // Set the RGB LED to blue
                 rgbLed.setColor(0, 0, 32);

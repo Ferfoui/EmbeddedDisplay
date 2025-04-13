@@ -16,8 +16,10 @@ void ScreenManager::init()
     initScreen();
     if (!screenEnabled)
         return;
+    writeChineseMessage(INIT_TEXT);
 
     initBluetooth();
+    writeChineseMessage(INITIALIZED_TEXT);
 }
 
 void ScreenManager::update()
@@ -40,10 +42,6 @@ void ScreenManager::initScreen()
     screenEnabled = true;
     mLed.setColor(SUCCESS_COLOR); // Green color
     Serial.println("Screen initialized");
-
-    delay(2000);
-    mScreen.clear();
-    mScreen.writeText("initialized", 0, 0, 1);
 }
 
 void ScreenManager::initBluetooth()
@@ -59,13 +57,15 @@ void ScreenManager::initBluetooth()
 void ScreenManager::handleConnect(const BLEDevice& device)
 {
     Serial.println("Device connected");
-    mLed.setColor(CONNECTED_COLOR); // Blue color
+    mLed.setColor(CONNECTED_COLOR);
+    writeChineseMessage(CONNECTED_TEXT);
 }
 
 void ScreenManager::handleDisconnect(const BLEDevice& device)
 {
     Serial.println("Device disconnected");
     mLed.setColor(DISCONNECTED_COLOR);
+    writeChineseMessage(DISCONNECTED_TEXT);
 }
 
 void ScreenManager::handleReceive(const char *message)
@@ -78,4 +78,10 @@ void ScreenManager::handleReceive(const char *message)
 
 Screen* ScreenManager::getScreen() {
     return &mScreen;
+}
+
+void ScreenManager::writeChineseMessage(const char *message)
+{
+    mScreen.clear();
+    drawChineseString(0, SCREEN_HEIGHT/4, message, &mScreen);
 }

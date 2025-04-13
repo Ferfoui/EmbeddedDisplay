@@ -1,6 +1,5 @@
 #include <Arduino.h>
 
-#include "chinese.hpp"
 #include "RgbLed.hpp"
 #include "ScreenManager.hpp"
 
@@ -18,9 +17,6 @@ void setup()
 
     screenManager.init();
 
-    screenManager.getScreen()->clear();
-    drawChineseString(0, 0, "中文", screenManager.getScreen());
-    screenManager.getScreen()->scrollRight();
 }
 
 unsigned long lastTimeMs = 0;

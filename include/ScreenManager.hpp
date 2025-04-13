@@ -5,9 +5,10 @@
 #ifndef SCREEN_MANAGER_HPP
 #define SCREEN_MANAGER_HPP
 
+#include <BluetoothTerminal.h>
 #include "Screen.hpp"
 #include "RgbLed.hpp"
-#include <BluetoothTerminal.h>
+#include "chinese.hpp"
 
 #define I2C_SDA_PIN 4
 #define I2C_SCL_PIN 5
@@ -22,6 +23,11 @@
 #define SUCCESS_COLOR      0, 32, 0   // Green
 #define CONNECTED_COLOR    0, 0, 32   // Blue
 #define DISCONNECTED_COLOR 16, 16, 0  // Yellow
+
+#define INIT_TEXT "初始化中"
+#define INITIALIZED_TEXT "系统已初始化"
+#define CONNECTED_TEXT "连接已建立"
+#define DISCONNECTED_TEXT "蓝牙已断开"
 
 class ScreenManager {
 public:
@@ -39,6 +45,7 @@ private:
     void handleConnect(const BLEDevice& device);
     void handleDisconnect(const BLEDevice& device);
     void handleReceive(const char *message);
+    void writeChineseMessage(const char *message);
 };
 
 

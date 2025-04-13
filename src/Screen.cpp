@@ -30,7 +30,7 @@ void Screen::writeText(const char* text, const short x, const short y, const uin
     mDisplay.display();
 }
 
-void Screen::drawBitmap(const uint8_t* bitmap, const short x, const short y, const short width, const short height) {
+void Screen::drawBitmap(const uint8_t* bitmap, short x, short y, short width, short height) {
     mDisplay.drawBitmap(x, y, bitmap, width, height, SSD1306_WHITE);
     mDisplay.display();
 }

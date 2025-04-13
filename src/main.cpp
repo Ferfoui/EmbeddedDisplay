@@ -1,10 +1,10 @@
 #include <Arduino.h>
 
-#include "main.hpp"
+#include "chinese.hpp"
 #include "RgbLed.hpp"
-
 #include "ScreenManager.hpp"
 
+#define RGB_LED_PIN 38
 
 RgbLed rgbLed(RGB_LED_PIN);
 
@@ -19,10 +19,7 @@ void setup()
     screenManager.init();
 
     screenManager.getScreen()->clear();
-    screenManager.getScreen()->drawBitmap(zhong_bmp, (SCREEN_WIDTH - CHAR_WIDTH) / 2 - 50, (SCREEN_HEIGHT - CHAR_HEIGHT) / 2, CHAR_WIDTH, CHAR_HEIGHT);
-    delay(500);
-    screenManager.getScreen()->drawBitmap(wen_bmp, (SCREEN_WIDTH - CHAR_WIDTH) / 2 + 18 - 50, (SCREEN_HEIGHT - CHAR_HEIGHT) / 2, CHAR_WIDTH, CHAR_HEIGHT);
-    delay(500);
+    drawChineseString(0, 0, "中文", screenManager.getScreen());
     screenManager.getScreen()->scrollRight();
 }
 

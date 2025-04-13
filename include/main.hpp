@@ -5,16 +5,9 @@
 #ifndef EMBEDDED_DISPLAY_MAIN_HPP
 #define EMBEDDED_DISPLAY_MAIN_HPP
 
+#include <Arduino.h>
+
 #define RGB_LED_PIN 38
-
-
-#define I2C_SDA_PIN 4
-#define I2C_SCL_PIN 5
-
-#define OLED_RESET (-1) // Reset pin # (or -1 if sharing Arduino reset pin)
-
-#define SCREEN_WIDTH 128
-#define SCREEN_HEIGHT 32
 
 #define CHAR_HEIGHT 16
 #define CHAR_WIDTH 16

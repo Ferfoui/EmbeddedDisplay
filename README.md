@@ -7,6 +7,6 @@ and the project uses the [ssd1306 library](https://github.com/adafruit/Adafruit_
 
 The project is built using [PlatformIO](https://platformio.org/)
 and the [Arduino framework](https://docs.platformio.org/en/latest/frameworks/arduino.html).
-Moreover, this project has been built for a Chinese class presentation (about chinese electronics)
+Moreover, it has been built for a Chinese class presentation (about chinese electronics)
 and it is a work in progress.
 

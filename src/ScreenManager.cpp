@@ -4,9 +4,9 @@
 
 #include "ScreenManager.hpp"
 
-ScreenManager::ScreenManager(RgbLed led) :
-        mLed(led),
-        mScreen(SCREEN_WIDTH, SCREEN_HEIGHT, I2C_SDA_PIN, I2C_SCL_PIN, OLED_RESET)
+ScreenManager::ScreenManager(const RgbLed led) :
+        mScreen(SCREEN_WIDTH, SCREEN_HEIGHT, I2C_SDA_PIN, I2C_SCL_PIN, OLED_RESET),
+        mLed(led)
 {
 }
 

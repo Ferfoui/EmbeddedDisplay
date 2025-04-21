@@ -63,18 +63,16 @@ void drawChineseChar(short x, short y, const char *character, Screen* screen)
     screen->drawBitmap(char_placeholder_bmp, x, y, CHAR_WIDTH, CHAR_HEIGHT);
 }
 
-void drawChineseString(short x, short y, const char *characters, Screen* screen)
+void drawChineseString(const short x, const short y, const char *characters, Screen* screen)
 {
     short offsetX = 0;
-    short offsetY = 0;
 
     // Iterate through the string and draw each character
     for (int i = 0; characters[i] != '\0'; i += 3)
     {
-        char character[4] = {characters[i], characters[i + 1], characters[i + 2], '\0'};
-        short xPosition = x + offsetX;
-        short yPosition = y + offsetY;
-        drawChineseChar(xPosition, yPosition, character, screen);
+        const char character[4] = {characters[i], characters[i + 1], characters[i + 2], '\0'};
+        const short xPosition = x + offsetX;
+        drawChineseChar(xPosition, y, character, screen);
         offsetX += CHAR_WIDTH + GAP_BETWEEN_CHARS; // Adjust the offset for the next character
     }
 }

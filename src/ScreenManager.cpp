@@ -121,5 +121,25 @@ void ScreenManager::writePresentationMessage()
 void ScreenManager::writeUserMessage(const char *message)
 {
     writeChineseText(MESSAGE_TEXT);
-    mScreen.writeText(message, 48, SCREEN_HEIGHT/4, 1);
+
+    // Print the 13 first characters of the message on the first line and the rest on the second line
+    char firstLine[14];
+    const uint messageLength = strlen(message);
+    if (messageLength < 13)
+    {
+        strncpy(firstLine, message, messageLength);
+        firstLine[messageLength] = '\0'; // Null-terminate the string
+    }
+    else
+    {
+        strncpy(firstLine, message, 13);
+        firstLine[13] = '\0'; // Null-terminate the string
+    }
+
+    mScreen.writeText(firstLine, 48, SCREEN_HEIGHT/4, 1);
+
+    if (messageLength > 13)
+    {
+        mScreen.writeText(message + 13, 48, SCREEN_HEIGHT/2, 1);
+    }
 }

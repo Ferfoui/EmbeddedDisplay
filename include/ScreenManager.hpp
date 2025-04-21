@@ -28,6 +28,9 @@
 #define INITIALIZED_TEXT "系统已初始化"
 #define CONNECTED_TEXT "连接已建立"
 #define DISCONNECTED_TEXT "蓝牙已断开"
+#define MESSAGE_TEXT "消息"
+#define HELLO_TEXT "你好"
+#define PRESENTATION_TEXT "我是电子屏幕"
 
 class ScreenManager {
 public:
@@ -45,7 +48,11 @@ private:
     void handleConnect(const BLEDevice& device);
     void handleDisconnect(const BLEDevice& device);
     void handleReceive(const char *message);
-    void writeChineseMessage(const char *message);
+    void writeChineseText(const char *text);
+
+    void writeHelloMessage();
+    void writePresentationMessage();
+    void writeUserMessage(const char *message);
 };
 
 

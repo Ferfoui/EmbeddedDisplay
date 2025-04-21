@@ -16,10 +16,10 @@ void ScreenManager::init()
     initScreen();
     if (!screenEnabled)
         return;
-    writeChineseMessage(INIT_TEXT);
+    writeChineseText(INIT_TEXT);
 
     initBluetooth();
-    writeChineseMessage(INITIALIZED_TEXT);
+    writeChineseText(INITIALIZED_TEXT);
 }
 
 void ScreenManager::update()
@@ -58,30 +58,68 @@ void ScreenManager::handleConnect(const BLEDevice& device)
 {
     Serial.println("Device connected");
     mLed.setColor(CONNECTED_COLOR);
-    writeChineseMessage(CONNECTED_TEXT);
+    writeChineseText(CONNECTED_TEXT);
 }
 
 void ScreenManager::handleDisconnect(const BLEDevice& device)
 {
     Serial.println("Device disconnected");
     mLed.setColor(DISCONNECTED_COLOR);
-    writeChineseMessage(DISCONNECTED_TEXT);
+    writeChineseText(DISCONNECTED_TEXT);
 }
 
 void ScreenManager::handleReceive(const char *message)
 {
     Serial.print("Message received: ");
     Serial.println(message);
-    mScreen.clear();
-    mScreen.writeText(message, 0, 0, 1);
+
+    // Check if the message starts with a number
+    if (isdigit(message[0]))
+    {
+        switch (message[0])
+        {
+            case '1':
+                writeHelloMessage();
+                break;
+            case '2':
+                writePresentationMessage();
+                break;
+            default:
+                Serial.println("Unknown command");
+                break;
+        }
+    }
+    else
+    {
+        // Handle the message as a string
+        Serial.print("String: ");
+        Serial.println(message);
+        writeUserMessage(message);
+    }
 }
 
 Screen* ScreenManager::getScreen() {
     return &mScreen;
 }
 
-void ScreenManager::writeChineseMessage(const char *message)
+void ScreenManager::writeChineseText(const char *text)
 {
     mScreen.clear();
-    drawChineseString(0, SCREEN_HEIGHT/4, message, &mScreen);
+    drawChineseString(0, SCREEN_HEIGHT/4, text, &mScreen);
+}
+
+void ScreenManager::writeHelloMessage()
+{
+    writeChineseText(HELLO_TEXT);
+}
+
+void ScreenManager::writePresentationMessage()
+{
+    writeChineseText(PRESENTATION_TEXT);
+}
+
+void ScreenManager::writeUserMessage(const char *message)
+{
+    writeChineseText(MESSAGE_TEXT);
+    mScreen.writeText(message, 48, SCREEN_HEIGHT/4, 1);
 }

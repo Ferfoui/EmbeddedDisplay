@@ -25,18 +25,28 @@ ChineseChar chineseDictionary[] = {
         {"牙", char_ya2_bmp},
         {"断", char_duan4_bmp},
         {"开", char_kai1_bmp},
+        {"消", char_xiao1_bmp},
+        {"息", char_xi1_bmp},
+        {"你", char_ni3_bmp},
+        {"好", char_hao3_bmp},
+        {"我", char_wo3_bmp},
+        {"是", char_shi4_bmp},
+        {"电", char_dian4_bmp},
+        {"子", char_zi3_bmp},
+        {"屏", char_ping2_bmp},
+        {"幕", char_mu4_bmp},
 };
 
-bool isValidUtf8Char(const char *character)
+bool isAValidChar(const char *character)
 {
-    // Check if the character is a valid UTF-8 encoded Chinese character
+    // Check if the character is a valid UTF-8 encoded Chinese character (this is a simplified check)
     return (character[0] & 0xF0) == 0xE0 && (character[1] & 0xC0) == 0x80 && (character[2] & 0xC0) == 0x80;
 }
 
 
 void drawChineseChar(short x, short y, const char *character, Screen* screen)
 {
-    if (!isValidUtf8Char(character))
+    if (!isAValidChar(character))
     {
         Serial.println("Invalid UTF-8 character");
         return;

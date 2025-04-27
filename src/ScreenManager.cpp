@@ -84,6 +84,9 @@ void ScreenManager::handleReceive(const char *message)
             case '2':
                 writePresentationMessage();
                 break;
+            case '3':
+                writeCreatorMessage();
+                break;
             default:
                 Serial.println("Unknown command");
                 break;
@@ -116,6 +119,11 @@ void ScreenManager::writeHelloMessage()
 void ScreenManager::writePresentationMessage()
 {
     writeChineseText(PRESENTATION_TEXT);
+}
+
+void ScreenManager::writeCreatorMessage()
+{
+    writeChineseText(CREATOR_TEXT);
 }
 
 void ScreenManager::writeUserMessage(const char *message)

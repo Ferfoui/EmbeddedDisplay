@@ -31,6 +31,7 @@
 #define MESSAGE_TEXT "消息"
 #define HELLO_TEXT "你好"
 #define PRESENTATION_TEXT "我是电子屏幕"
+#define CREATOR_TEXT "奥剑治设计了我"
 
 class ScreenManager {
 public:
@@ -52,6 +53,7 @@ private:
 
     void writeHelloMessage();
     void writePresentationMessage();
+    void writeCreatorMessage();
     void writeUserMessage(const char *message);
 };
 

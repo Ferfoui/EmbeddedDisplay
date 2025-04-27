@@ -35,6 +35,11 @@ ChineseChar chineseDictionary[] = {
         {"子", char_zi3_bmp},
         {"屏", char_ping2_bmp},
         {"幕", char_mu4_bmp},
+        {"奥", char_ao4_bmp},
+        {"剑", char_jian4_2_bmp},
+        {"治", char_zhi4_bmp},
+        {"计", char_ji4_bmp},
+        {"了", char_le5_bmp},
 };
 
 bool isAValidChar(const char *character)
@@ -44,7 +49,7 @@ bool isAValidChar(const char *character)
 }
 
 
-void drawChineseChar(short x, short y, const char *character, Screen* screen)
+void drawChineseChar(short x, short y, const char* character, Screen* screen)
 {
     if (!isAValidChar(character))
     {
@@ -63,7 +68,7 @@ void drawChineseChar(short x, short y, const char *character, Screen* screen)
     screen->drawBitmap(char_placeholder_bmp, x, y, CHAR_WIDTH, CHAR_HEIGHT);
 }
 
-void drawChineseString(const short x, const short y, const char *characters, Screen* screen)
+void drawChineseString(const short x, const short y, const char* characters, Screen* screen)
 {
     short offsetX = 0;
 
